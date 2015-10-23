@@ -156,7 +156,7 @@ class SimpleSAML_Utilities {
 		$selfURLhost = self::selfURLhost();
 		$selfURLhost .= $_SERVER['SCRIPT_NAME'];
 		if (isset($_SERVER['PATH_INFO'])) {
-			$selfURLhost .= $_SERVER['PATH_INFO'];
+			//$selfURLhost .= $_SERVER['PATH_INFO'];
 		}
 		return $selfURLhost;
 	

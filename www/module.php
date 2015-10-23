@@ -130,7 +130,7 @@ try {
 
 	if (preg_match('#\.php$#D', $path)) {
 		/* PHP file - attempt to run it. */
-		$_SERVER['SCRIPT_NAME'] .= '/' . $module . '/' . $url;
+		//$_SERVER['SCRIPT_NAME'] .= '/' . $module . '/' . $url;
 		require($path);
 		exit();
 	}
