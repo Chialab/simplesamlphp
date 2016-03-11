@@ -108,6 +108,10 @@ class SimpleSAML_Utilities {
 	 */
 	private static function getServerHTTPS() {
 
+		if (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			return TRUE;
+		}
+
 		if(!array_key_exists('HTTPS', $_SERVER)) {
 			/* Not an https-request. */
 			return FALSE;
@@ -131,7 +135,9 @@ class SimpleSAML_Utilities {
 	 */
 	private static function getServerPort() {
 
-		if (isset($_SERVER["SERVER_PORT"])) {
+		if (isset($_SERVER["HTTP_X_FORWARDED_PORT"])) {
+			$portnumber = $_SERVER["HTTP_X_FORWARDED_PORT"];
+		} elseif (isset($_SERVER["SERVER_PORT"])) {
 			$portnumber = $_SERVER["SERVER_PORT"];
 		} else {
 			$portnumber = 80;
