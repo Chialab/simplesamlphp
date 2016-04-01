@@ -158,16 +158,19 @@ class SimpleSAML_Utilities {
 	 * Will return https://sp.example.org/universities/ruc/baz/simplesaml/saml2/SSOService.php
 	 */
 	public static function selfURLNoQuery() {
-	
-		$selfURLhost = self::selfURLhost();
-		$selfURLhost .= $_SERVER['SCRIPT_NAME'];
-		if (isset($_SERVER['PATH_INFO'])) {
-			//$selfURLhost .= $_SERVER['PATH_INFO'];
-		}
-		return $selfURLhost;
-	
-	}
 
+       $selfURLhost = self::selfURLhost();
+       if (!empty($_SERVER['FCGI_ROLE'])) {
+               $selfURLhost .= dirname($_SERVER['PHP_SELF']) . $_SERVER['PATH_INFO'];
+       } else {
+               $selfURLhost .= $_SERVER['SCRIPT_NAME'];
+       }
+       //if (isset($_SERVER['PATH_INFO'])) {
+               //$selfURLhost .= $_SERVER['PATH_INFO'];
+       //}
+       return $selfURLhost;
+
+	}
 
 	/**
 	 * Will return sp.example.org/ssp/sp1
