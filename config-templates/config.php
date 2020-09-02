@@ -293,6 +293,18 @@ $config = array(
     'session.cookie.secure' => false,
 
     /*
+     * Set the SameSite attribute in the cookie.
+     *
+     * You can set this to the strings 'None', 'Lax', or 'Strict' to support
+     * the RFC6265bis SameSite cookie attribute. If set to null, no SameSite
+     * attribute will be sent.
+     *
+     * Example:
+     *  'session.cookie.samesite' => 'None',
+     */
+    'session.cookie.samesite' => null,
+
+    /*
      * When set to FALSE fallback to transient session on session initialization
      * failure, throw exception otherwise.
      */

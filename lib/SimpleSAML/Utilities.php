@@ -2360,6 +2360,7 @@ class SimpleSAML_Utilities {
 			'secure' => FALSE,
 			'httponly' => TRUE,
 			'raw' => FALSE,
+			'samesite' => null,
 		);
 
 		if ($params !== NULL) {
@@ -2382,6 +2383,11 @@ class SimpleSAML_Utilities {
 			$expire = 0;
 		} else {
 			$expire = time() + $params['lifetime'];
+		}
+
+		/* in older versions of PHP 7.3 we need a nasty hack to set RFC6265bis SameSite attribute */
+		if ($params['samesite'] !== null && !preg_match('/;\s+samesite/i', $params['path'])) {
+			$params['path'] .= '; SameSite=' . $params['samesite'];
 		}
 
 		if ($params['raw']) {

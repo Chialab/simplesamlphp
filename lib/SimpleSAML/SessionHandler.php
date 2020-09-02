@@ -134,6 +134,7 @@ abstract class SimpleSAML_SessionHandler {
 			'path' => $config->getString('session.cookie.path', '/'),
 			'domain' => $config->getString('session.cookie.domain', NULL),
 			'secure' => $config->getBoolean('session.cookie.secure', FALSE),
+			'samesite' => $config->getString('session.cookie.samesite', null),
 			'httponly' => TRUE,
 		);
 	}
